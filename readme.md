@@ -43,7 +43,7 @@ Start the HTTP viewer (defaults to port 8080) - `python wifu.py --viewer`.
 Start the HTTP viewer on a specific port - `python wifu.py --viewer --port 9000`.
 
 *you can also specify a hostname interface with -H/--webhost*  
-Start the HTTP viewer on a specific port - `python wifu.py --viewer --port 9000 --webhost <my-internal-non-localhost-address>`.
+Start the HTTP viewer on a specific webhost interface and port - `python wifu.py --viewer --port 9000 --webhost <my-internal-non-localhost-address>`.
 
 2021: 
 - the original stub googleapis.com link is included as the default, but is broken.
