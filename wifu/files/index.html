@@ -2,9 +2,11 @@
 <html>
 <head>
 	<title>Wifu - Viewer</title>
-	<script src="env.js"></script>
+	<script type="text/javascript" src="env.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=env.APIKEY&callback=initMap"></script>
+	<!-- this default will error out for the google api. add your API key to the commented out line and enable the correct version -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> 
+	<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=env.APIKEY&callback=initMap"></script> -->
 	<script type="text/javascript" src="/files/gmaps.js"></script>
 	<link rel="stylesheet" type="text/css" href="/files/index.html.css" />
 	<script type="text/javascript" src="/files/index.html.js"></script>
