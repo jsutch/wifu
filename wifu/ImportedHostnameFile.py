@@ -1,4 +1,4 @@
-from Utils import Utils
+from .Utils import Utils
 
 class ImportedHostnameFile:
 	SQL_SCHEMA = "CREATE TABLE 'imported_hostname_files' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'file_name' TEXT NOT NULL, 'date_imported' TEXT NOT NULL);"

@@ -1,4 +1,4 @@
-from Utils import Utils
+from .Utils import Utils
 
 class NetworkClient:
 	SQL_SCHEMA = "CREATE TABLE 'network_clients' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'client_mac' TEXT NOT NULL, 'network_bssid' TEXT NOT NULL, 'total_packets' TEXT NOT NULL, 'avg_lat' TEXT, 'avg_lon' TEXT, 'seen_first_time' TEXT NOT NULL, 'seen_last_time' TEXT NOT NULL, 'max_metres_between_locations' TEXT NOT NULL, number_of_times_seen TEXT NOT NULL);"

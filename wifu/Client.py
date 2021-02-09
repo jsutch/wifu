@@ -1,4 +1,4 @@
-from Utils import Utils
+from .Utils import Utils
 
 class Client:
 	SQL_SCHEMA = "CREATE TABLE 'clients' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'client_mac' TEXT NOT NULL, 'hostname' TEXT NULL, 'total_packets' TEXT NOT NULL, 'last_seen_lat' TEXT, 'last_seen_lon' TEXT, 'seen_first_time' TEXT NOT NULL, 'seen_last_time' TEXT NOT NULL, 'max_metres_between_locations' TEXT NOT NULL, number_of_times_seen TEXT NOT NULL);"
@@ -104,7 +104,7 @@ class Client:
 	def get_probe_requests_to_insert_and_update(self):
 		probe_requests_to_insert = []
 		probe_requests_to_update = []
-		for key in self.probe_requests.keys():
+		for key in list(self.probe_requests.keys()):
 			probe_request = self.probe_requests[key]
 			if probe_request.id == 0:
 				probe_requests_to_insert.append(probe_request.get_object_for_sqlite_insert())

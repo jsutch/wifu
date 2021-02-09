@@ -1,5 +1,5 @@
-from Network import Network
-from Utils import Utils
+from .Network import Network
+from .Utils import Utils
 
 class ViewerOptions():
 	def __init__(self, querystring):
@@ -140,14 +140,14 @@ class ViewerNetworkDetails:
 		self.number_of_times_seen = network.number_of_times_seen
 		self.total_packets = network.total_packets
 		self.max_metres_between_locations = network.max_metres_between_locations
-		self.encryptions = network.encryptions.keys()
+		self.encryptions = list(network.encryptions.keys())
 		self.location_markers = []
 		for network_location in network.locations:
 			self.location_markers.append(ViewerNetworkLocationMarker(network_location, network.essid).__dict__)
 		self.clients = []
 			
 	def load_clients(self, network, clients):
-		for key in network.clients.keys():
+		for key in list(network.clients.keys()):
 			network_client = network.clients[key]
 			client = clients[network_client.client_mac]
 			self.clients.append(ViewerNetworkDetailsClients(client).__dict__)
@@ -194,12 +194,12 @@ class ViewerClientDetails:
 		for client_location in client.locations:
 			self.location_markers.append(ViewerClientLocationMarker(client_location).__dict__)
 		self.probe_requests = []
-		for key in client.probe_requests.keys():
+		for key in list(client.probe_requests.keys()):
 			self.probe_requests.append(ViewerClientDetailsProbeRequests(client.probe_requests[key]).__dict__)
 		self.networks = []
 		
 	def load_networks(self, client, networks):
-		for key in client.network_clients.keys():
+		for key in list(client.network_clients.keys()):
 			network_client = client.network_clients[key]
 			network = networks[network_client.network_bssid]
 			self.networks.append(ViewerClientDetailsNetworks(network).__dict__)

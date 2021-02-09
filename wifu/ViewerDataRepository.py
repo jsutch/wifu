@@ -1,12 +1,12 @@
 import sqlite3
 
-from DataRepository import DataRepository
-from ViewerClasses import ViewerClientMarker
-from ViewerClasses import ViewerClientDetails
-from ViewerClasses import ViewerNetworkMarker
-from ViewerClasses import ViewerNetworkDetails
-from ViewerClasses import ViewerResults
-from Utils import Utils
+from .DataRepository import DataRepository
+from .ViewerClasses import ViewerClientMarker
+from .ViewerClasses import ViewerClientDetails
+from .ViewerClasses import ViewerNetworkMarker
+from .ViewerClasses import ViewerNetworkDetails
+from .ViewerClasses import ViewerResults
+from .Utils import Utils
 		
 class ViewerDataRepository(DataRepository):
 	def __init__(self, db_file_name):
@@ -15,7 +15,7 @@ class ViewerDataRepository(DataRepository):
 	def get_network_markers(self, viewer_options):
 		networks = []
 		total_record_count = 0
-		for key in self.networks.keys():
+		for key in list(self.networks.keys()):
 			network = self.networks[key]
 			if network.avg_lat is None:
 				continue
@@ -93,7 +93,7 @@ class ViewerDataRepository(DataRepository):
 	def get_network_markers_for_client(self, client_mac):
 		client = self.clients[client_mac]
 		network_markers = []
-		for key in client.network_clients.keys():
+		for key in list(client.network_clients.keys()):
 			network_client = client.network_clients[key]
 			network = self.networks[network_client.network_bssid]
 			network_markers.append(ViewerNetworkMarker(network).__dict__)
@@ -102,7 +102,7 @@ class ViewerDataRepository(DataRepository):
 	def get_client_markers(self, viewer_options):
 		clients = []
 		total_record_count = 0
-		for key in self.clients.keys():
+		for key in list(self.clients.keys()):
 			client = self.clients[key]
 			if client.last_seen_lat is None:
 				continue
@@ -123,7 +123,7 @@ class ViewerDataRepository(DataRepository):
 					continue
 			if viewer_options.filter_by_probing_for_ssid:
 				probing_for_ssid_matches = False
-				for key in client.probe_requests.keys():
+				for key in list(client.probe_requests.keys()):
 					probe_request = client.probe_requests[key]
 					if probe_request.ssid is not None and viewer_options.probing_for_ssid.lower() in probe_request.ssid.lower():
 						probing_for_ssid_matches = True
@@ -162,7 +162,7 @@ class ViewerDataRepository(DataRepository):
 	def get_client_markers_for_network(self, network_bssid):
 		network = self.networks[network_bssid]
 		client_markers = []
-		for key in network.clients.keys():
+		for key in list(network.clients.keys()):
 			network_client = network.clients[key]
 			client = self.clients[network_client.client_mac]
 			client_markers.append(ViewerClientMarker(client).__dict__)

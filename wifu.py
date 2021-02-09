@@ -15,6 +15,7 @@ def get_argument_parser():
 	parser.add_argument("-n", "--hostname", dest="hostnames_import_path", help="import hostnames", nargs='*')
 	parser.add_argument("-v", "--viewer", help="start the web server to view the data", action='store_true')
 	parser.add_argument("-p", "--port", help="port number on which to start the web server")
+	parser.add_argument("-H", "--webhost", help="start web server on hostname - default = 'localhost'")
 	parser.add_argument("-s", "--stats", help="show database statistics", action='store_true')
 	return parser
 	
@@ -43,7 +44,7 @@ def main():
 	if args.viewer == True:
 		viewer_data_repository = ViewerDataRepository(args.path)
 		viewer_http_server = ViewerHttpServer(viewer_data_repository)
-		viewer_http_server.start(args.port)
+		viewer_http_server.start(args.port,args.webhost)
 		option_selected = True
 	if option_selected == False:
 		get_argument_parser().print_help()

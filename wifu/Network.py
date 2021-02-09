@@ -1,6 +1,6 @@
-from NetworkEncryption import NetworkEncryption
-from NetworkESSID import NetworkESSID
-from Utils import Utils
+from .NetworkEncryption import NetworkEncryption
+from .NetworkESSID import NetworkESSID
+from .Utils import Utils
 
 class Network:
 	SQL_SCHEMA = "CREATE TABLE 'networks' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'network_bssid' TEXT NOT NULL, 'essid' TEXT, 'total_packets' TEXT NOT NULL, 'avg_lat' TEXT, 'avg_lon' TEXT, 'is_hidden' TEXT, 'max_rate' TEXT, 'seen_first_time' TEXT NOT NULL, 'seen_last_time' TEXT NOT NULL, 'max_metres_between_locations' TEXT NOT NULL, number_of_times_seen TEXT NOT NULL);"
@@ -101,7 +101,7 @@ class Network:
 			return self.basic_encryption_names
 		else:
 			basic_encryption_values = ["WEP", "WPA", "None"]
-			for encryption in self.encryptions.keys():
+			for encryption in list(self.encryptions.keys()):
 				for basic_encryption in basic_encryption_values:
 					if basic_encryption in encryption and basic_encryption not in self.basic_encryption_names:
 						self.basic_encryption_names.append(basic_encryption)
@@ -116,7 +116,7 @@ class Network:
 	def get_network_encryptions_to_insert_and_update(self):
 		network_encryptions_to_insert = []
 		network_encryptions_to_update = []
-		for key in self.encryptions.keys():
+		for key in list(self.encryptions.keys()):
 			network_encryption = self.encryptions[key]
 			if network_encryption.id == 0:
 				network_encryptions_to_insert.append(network_encryption.get_object_for_sqlite_insert())
@@ -127,7 +127,7 @@ class Network:
 	def get_network_essids_to_insert_and_update(self):
 		network_essids_to_insert = []
 		network_essids_to_update = []
-		for key in self.essids.keys():
+		for key in list(self.essids.keys()):
 			network_essid = self.essids[key]
 			if network_essid.id == 0:
 				network_essids_to_insert.append(network_essid.get_object_for_sqlite_insert())
@@ -138,7 +138,7 @@ class Network:
 	def get_network_clients_to_insert_and_update(self):
 		network_clients_to_insert = []
 		network_clients_to_update = []
-		for key in self.clients.keys():
+		for key in list(self.clients.keys()):
 			network_client = self.clients[key]
 			if network_client.id == 0:
 				network_clients_to_insert.append(network_client.get_object_for_sqlite_insert())

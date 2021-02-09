@@ -1,40 +1,42 @@
-from BaseHTTPServer import BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler
 import json
 import os
 import time
-import urlparse
+import urllib.parse
 
-from ViewerClasses import ViewerOptions
-from ViewerDataRepository import ViewerDataRepository
+from .ViewerClasses import ViewerOptions
+from .ViewerDataRepository import ViewerDataRepository
 
 class ViewerHttpServer():
 	def __init__(self, data_repository):
 		self.data_repository = data_repository
 		
-	def start(self, port):
+	def start(self, port, webhost):
 		if port == None:
 			port = 8080
-		from BaseHTTPServer import HTTPServer
-		server = HTTPServer(('localhost', int(port)), ViewerHttpServerHandler)
-		print 'Starting the analyzer web server on port %s, use <Ctrl-C> to stop' % str(port)
+		if webhost == None:
+			webhost = 'localhost'
+		from http.server import HTTPServer
+		server = HTTPServer((str(webhost), int(port)), ViewerHttpServerHandler)
+		print(f'Starting the analyzer web server on server {webhost} port {port}, use <Ctrl-C> to stop')
 		server.data_repository = self.data_repository
 		server.serve_forever()
 	
 class ViewerHttpServerHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		start_time = time.time()
-		parsed_path = urlparse.urlparse(self.path)
+		parsed_path = urllib.parse.urlparse(self.path)
 		if parsed_path.path.startswith("index.html"):
 			self.process_files_request(parsed_path.path[6:])
 		elif parsed_path.path.startswith("/files"):
 			self.process_files_request(parsed_path.path[6:])
 		elif parsed_path.path.startswith("/api/"):
-			self.process_api_request(parsed_path.path[5:], urlparse.parse_qs(parsed_path.query))
+			self.process_api_request(parsed_path.path[5:], urllib.parse.parse_qs(parsed_path.query))
 		else:
 			self.process_files_request("index.html")
 		end_time = time.time()
 		processing_time = end_time - start_time
-		print "Completed request in %s secs." % str(round(processing_time,3))
+		print("Completed request in %s secs." % str(round(processing_time,3)))
 		return
 	
 	def process_api_request(self, path, querystring):
@@ -77,7 +79,7 @@ class ViewerHttpServerHandler(BaseHTTPRequestHandler):
 	def send_data_and_response(self, data):
 		self.send_response(200)
 		self.end_headers()
-		self.wfile.write(data)
+		self.wfile.write(data.encode(encoding='utf_8'))
 	
 	def process_files_request(self, file_name):
 		file_path = os.path.abspath("wifu/files/" + file_name)

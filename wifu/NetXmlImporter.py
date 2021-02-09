@@ -3,14 +3,14 @@ import os
 import time
 import xml.etree.ElementTree as ElementTree
 
-from ClientLocation import ClientLocation
-from DataRepository import DataRepository
-from ImportedFile import ImportedFile
-from Network import Network
-from NetworkClient import NetworkClient
-from NetworkLocation import NetworkLocation
-from ProbeRequest import ProbeRequest
-from Utils import Utils
+from .ClientLocation import ClientLocation
+from .DataRepository import DataRepository
+from .ImportedFile import ImportedFile
+from .Network import Network
+from .NetworkClient import NetworkClient
+from .NetworkLocation import NetworkLocation
+from .ProbeRequest import ProbeRequest
+from .Utils import Utils
 
 class NetXmlImporter:
 	def __init__(self, data_repository, ignore_already_imported_error):
@@ -21,20 +21,20 @@ class NetXmlImporter:
 		start_time = time.time()
 		netxml_files = self.find_all_netxml_files(paths)
 		if len(netxml_files) == 0:
-			print "No netxml files found to import."
+			print("No netxml files found to import.")
 		else:
-			print "%s file(s) found to import." % str(len(netxml_files))
+			print("%s file(s) found to import." % str(len(netxml_files)))
 			for netxml_file in netxml_files:
 				file_name = os.path.basename(netxml_file)
 				if self.ignore_already_imported_error == False and file_name in self.data_repository.imported_files:
 					imported_file = self.data_repository.imported_files[file_name]
-					print "Ignoring %s. It has already been imported on %s." % (netxml_file, str(imported_file.date_imported))
+					print("Ignoring %s. It has already been imported on %s." % (netxml_file, str(imported_file.date_imported)))
 					continue
-				print "Reading %s" % netxml_file
+				print("Reading %s" % netxml_file)
 				try:
 					tree = ElementTree.parse(netxml_file)
 				except:
-					print "Ignoring %s. Failed to parse the xml." % netxml_file
+					print("Ignoring %s. Failed to parse the xml." % netxml_file)
 					continue
 				root = tree.getroot()
 				self.parse_wireless_network_elements(root.findall("wireless-network"), file_name)
@@ -42,7 +42,7 @@ class NetXmlImporter:
 			self.data_repository.save_updated_items()
 		end_time = time.time()
 		processing_time = end_time - start_time
-		print "Completed in %s secs." % str(round(processing_time,2))
+		print("Completed in %s secs." % str(round(processing_time,2)))
 		
 	def find_netxml_files_from_directory(self, path):
 		files = []
@@ -57,7 +57,7 @@ class NetXmlImporter:
 			return self.find_netxml_files_from_directory("./")
 		for path in paths:
 			if not os.path.exists(path):
-				print "File or folder not found: %s." % path
+				print("File or folder not found: %s." % path)
 			else:
 				if os.path.isfile(path):
 					files.append(path)

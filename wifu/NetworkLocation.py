@@ -1,4 +1,4 @@
-from Utils import Utils
+from .Utils import Utils
 
 class NetworkLocation:
 	SQL_SCHEMA = "CREATE TABLE 'network_locations' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'network_bssid' TEXT NOT NULL, 'avg_lat' TEXT NOT NULL, 'avg_lon' TEXT NOT NULL, 'seen_time' TEXT NOT NULL, 'seen_in_file_name' TEXT NOT NULL);"

@@ -1,4 +1,4 @@
-from Utils import Utils
+from .Utils import Utils
 
 class NetworkEncryption:
 	SQL_SCHEMA = "CREATE TABLE 'network_encryptions' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'network_bssid' TEXT NOT NULL, 'encryption' TEXT NOT NULL, 'seen_first_time' TEXT NOT NULL, 'seen_last_time' TEXT NOT NULL);"

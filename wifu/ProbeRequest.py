@@ -1,4 +1,4 @@
-from Utils import Utils
+from .Utils import Utils
 
 class ProbeRequest:
 	SQL_SCHEMA = "CREATE TABLE 'probe_requests' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'client_mac' TEXT NOT NULL, 'ssid' TEXT, 'total_packets' TEXT NOT NULL, 'seen_first_time' TEXT NOT NULL, 'seen_last_time' TEXT NOT NULL, number_of_times_seen TEXT NOT NULL);"
