@@ -42,6 +42,23 @@ Start the HTTP viewer (defaults to port 8080) - `python wifu.py --viewer`.
 
 Start the HTTP viewer on a specific port - `python wifu.py --viewer --port 9000`.
 
+*you can also specify a hostname interface with -H/--webhost*  
+Start the HTTP viewer on a specific port - `python wifu.py --viewer --port 9000 --webhost <my-internal-non-localhost-address>`.
+
+2021: 
+- the original stub googleapis.com link is included as the default, but is broken.
+
+To make the google maps work you need a google API key.  Go to wifu/wifu/files/index.html and find:
+```
+https://maps.googleapis.com/maps/api/js?v=3.exp&key=env.APIKEY&callback=initMap
+```
+
+change the env.APIKEY to your API key, save, swap commented lines and close.
+
+**Danger here**
+*Don't add this to a publically facing website - your API key will be exposed.*
+
+
 ## Screenshots
 ![Importing Data](https://raw.githubusercontent.com/darkosancanin/wifu/master/images/console_importing_data.png)
 
