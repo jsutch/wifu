@@ -8,7 +8,9 @@ var WIFU = (function ($){
 			div: '#map',
 			zoom: 16,
 			//SYDNEY - lat: -33.865143, lng:151.209900,
-			lat: -33.746477, lng: 151.109194, 
+			//lat: -33.746477, lng: 151.109194, 
+			//SEATTLE - lat: 47.6205, lng:-122.3493,
+			lat: 47.6205, lng:-122.3493,
 			bounds_changed: function(e){
 				if (first_load_completed == true) 
 					return; 

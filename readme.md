@@ -140,3 +140,5 @@ Start the HTTP viewer on a specific port - `python wifu.py --viewer --port 9000`
 - seen_first_time [TEXT] - Date/time when the client was first seen probing for this network.
 - seen_last_time [TEXT] - Date/time when the client was last seen probing for this network.
 - number_of_times_seen [TEXT] - The total number of times the client has been seen probing for this network.
+
+#### upgraded to use python3 - 2021 - Jeff Sutch - Collett Park Networks

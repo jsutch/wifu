@@ -1,2 +1,4 @@
 _test_data/
 *.sqlite
+*.pyc
+*.old
