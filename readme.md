@@ -71,7 +71,7 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 ![Clients](https://raw.githubusercontent.com/darkosancanin/wifu/master/images/clients.png)
 
 ## Database Schema
-###client_locations
+### client_locations
 - id [INTEGER] - Primary key for the table.
 - client_mac [TEXT] - MAC address of the client.
 - avg_lat [TEXT] - Average latitude of where they client was seen.
@@ -79,7 +79,7 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 - seen_time [TEXT] - Date/time when the client was seen at this location.
 - seen_in_file_name [TEXT] - What file the location was imported from.
 
-###clients
+### clients
 - id [INTEGER] - Primary key for the table.
 - client_mac [TEXT] - MAC address of the client.
 - hostname [TEXT] - The computer hostname of the client (retrieved from DHCP packets).
@@ -91,17 +91,17 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 - max_metres_between_locations [TEXT] - The furthest distance (in metres) where the client has been seen.
 - number_of_times_seen [TEXT] - The total number of times the client has been seen.
 
-###imported_files
+### imported_files
 - id [INTEGER] - Primary key for the table.
 - file_name [TEXT] - The name of the file.
 - date_imported [TEXT] - Date/time when the file was imported.
 
-###imported_hostname_files
+### imported_hostname_files
 - id [INTEGER] - Primary key for the table.
 - file_name [TEXT] - The name of the file.
 - date_imported [TEXT] - Date/time when the file was imported.
 
-###network_clients
+### network_clients
 - id [INTEGER] - Primary key for the table.
 - client_mac [TEXT] - MAC address of the client.
 - network_bssid [TEXT] - The bssid of the network that the client was connected to.
@@ -113,21 +113,21 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 - max_metres_between_locations [TEXT] - The furthest distance (in metres) where the client has been seen.
 - number_of_times_seen [TEXT] - The total number of times the client has been seen.
 
-###network_encryptions
+### network_encryptions
 - id [INTEGER] - Primary key for the table.
 - network_bssid [TEXT] - The bssid of the network.
 - encryption [TEXT] - The encryption that the network is advertising.
 - seen_first_time [TEXT] - Date/time when the encryption was first seen for that network.
 - seen_last_time [TEXT] - Date/time when the encryption was last seen for that network.
 
-###network_essids
+### network_essids
 - id [INTEGER] - Primary key for the table.
 - network_bssid [TEXT] - The bssid of the network.
 - essid [TEXT] - The essid that the network is advertising.
 - seen_first_time [TEXT] - Date/time when the essid was first seen for that network.
 - seen_last_time [TEXT] - Date/time when the essid was last seen for that network.
 
-###network_locations
+### network_locations
 - id [INTEGER] - Primary key for the table.
 - network_bssid [TEXT] - The bssid of the network.
 - avg_lat [TEXT] - Average latitude of where the network was seen.
@@ -135,7 +135,7 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 - seen_time [TEXT] - Date/time when the network was seen at this location.
 - seen_in_file_name [TEXT] - What file the location was imported from.
 
-###networks
+### networks
 - id [INTEGER] - Primary key for the table.
 - network_bssid [TEXT] - The bssid of the network.
 - essid [TEXT] - The latest essid that the network is advertising.
@@ -149,7 +149,7 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 - max_metres_between_locations [TEXT] - The furthest distance (in metres) where the network has been seen.
 - number_of_times_seen [TEXT] - The total number of times the network has been seen.
 
-###probe_requests
+### probe_requests
 - id [INTEGER] - Primary key for the table.
 - client_mac [TEXT] - MAC address of the client.
 - ssid [TEXT] - The ssid of the network that the client was probing for.
@@ -158,4 +158,4 @@ change the env.APIKEY to your API key, save, swap commented lines and close.
 - seen_last_time [TEXT] - Date/time when the client was last seen probing for this network.
 - number_of_times_seen [TEXT] - The total number of times the client has been seen probing for this network.
 
-#### upgraded to use python3 - 2021 - Jeff Sutch - Collett Park Networks
+*upgraded to use python3 - 2021 - Jeff Sutch - Collett Park Networks*
