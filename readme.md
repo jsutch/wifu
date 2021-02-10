@@ -28,36 +28,10 @@ The tool was created to better understand wireless networks and traffic around m
 - How many networks have changed their name?  
 `SELECT N.essid AS [Current Network Name], N.network_bssid AS [Network BSSID], COUNT(*) AS [Number of Name Changes] FROM network_essids NE INNER JOIN networks N ON n.network_bssid = NE.network_bssid GROUP BY NE.network_bssid ORDER BY COUNT(*) DESC`
 
-### for ipython/jupyter versions of these queries
+### for ipython/jupyter users: run the queries as functions
 
-- you can %load queries.py once you've run the importer to get a set of static functions to return the example queries. This permits multiple database scans per notebook.
+You can load queries.py in ipython once you've run the importer to get a set of static functions to return the example queries. This permits multiple database connections per notebook if you want to run comparisons. Check out queries.md for more details.
 
-create a connection with 
-
-```
-conn = sqlite3.connect('wifu.sqlite')
-```
-
-Then call the connection in the function:  
-e.g.
-
-```
-In [120]: most_clients(conn)
-Out[120]:
-[('doghouse', 'CC:F4:21:52:C1:19', 9),
- (None, '60:38:E0:7B:01:12', 7),
- ('marys-5g', '6C:B0:BC:FA:CA:6E', 5),
- ('I like to dance', '60:38:D1:B2:B0:BB', 3),
- ('doghouse', 'CC:F4:21:52:C1:15', 2),
-...
-```
-
-or
-
-```
-In [121]: ap_encryption(conn)
-Out[121]: [('WPA+PSK', 13), ('WPA+AES-CCM', 13), ('WPA+TKIP', 1), ('None', 1)]
-```
 
 ## Instructions/Usage
 Install python requirements - `pip install -r requirements.txt`.
